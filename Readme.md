@@ -81,6 +81,16 @@ Create a file called `.env` file at the root folder of the project with the envi
 pip install -r requirements.txt
 ```
 
+
+### make migrattions
+```bash
+python manage.py makemigrations
+
+python manage.py migrate
+
+```
+
+
 ### Running the web application
 
 Once you have installed the dependencies, you can start the web application using

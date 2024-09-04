@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class UserManager(BaseUserManager):
@@ -26,9 +25,9 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
-    
 
-class Visitor(AbstractBaseUser):
+
+class PortalUser(AbstractBaseUser):
     name = models.CharField(max_length=50, null=False)
     phone_number = models.CharField(max_length=50, null=False)
     email = models.EmailField(unique=True)
@@ -40,7 +39,3 @@ class Visitor(AbstractBaseUser):
     
     def __str__(self) -> str:
         return self.name
-    
-    def visited_residents(self):
-        from resident.models import Resident
-        return Resident.objects.filter(residentvisitor__visitor=self)

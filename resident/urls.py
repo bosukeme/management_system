@@ -1,15 +1,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import AddVisitorToResidentView, ListVisitorsForResidentView
-from .views import  ResidentViewSet
+
+from .views import  ResidentViewSet, ResidentCount
 
 router = DefaultRouter()
 router.register(r'residents', ResidentViewSet, basename='resident')
 
 
-
 urlpatterns = [
+    path('residents/count/', ResidentCount.as_view(), name='resident-count'),
     path("", include(router.urls)),
-    path('residents/<int:resident_id>/add-visitor/', AddVisitorToResidentView.as_view(), name='add-visitor-to-resident'),
-    path('residents/<int:resident_id>/visitors/', ListVisitorsForResidentView.as_view(), name='list-visitors-for-resident'),
 ]
