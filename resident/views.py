@@ -15,6 +15,8 @@ from .models import Resident
 
 @extend_schema(tags=['visitor'])
 class AddVisitorToResidentView(generics.CreateAPIView):
+
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ResidentVisitorSerializer
 
     def post(self, request, *args, **kwargs):
@@ -31,6 +33,8 @@ class AddVisitorToResidentView(generics.CreateAPIView):
 
 @extend_schema(tags=['visitor'])
 class ListVisitorsForResidentView(generics.ListAPIView):
+
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = ResidentVisitorSerializer
 
     def get_queryset(self):

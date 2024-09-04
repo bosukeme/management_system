@@ -1,6 +1,7 @@
 from django.utils import timezone
 from rest_framework import generics
 from rest_framework.response import Response
+from rest_framework import permissions
 
 from drf_spectacular.utils import extend_schema
 
@@ -16,11 +17,15 @@ from  resident.models import Resident
 
 @extend_schema(tags=['visitor'])
 class VisitorDetailView(generics.RetrieveAPIView):
+    
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
 
 
 class CheckInView(generics.CreateAPIView):
+
+    permission_classes = [permissions.IsAuthenticated]
     queryset = ResidentVisitor.objects.all()
     serializer_class = ResidentVisitorSerializer
 
@@ -33,6 +38,8 @@ class CheckInView(generics.CreateAPIView):
 
 
 class CheckOutView(generics.UpdateAPIView):
+
+    permission_classes = [permissions.IsAuthenticated]
     queryset = ResidentVisitor.objects.all()
     serializer_class = ResidentVisitorSerializer
 
